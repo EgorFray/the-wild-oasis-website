@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import CabinList from "../_components/CabinList";
 import Spinner from "../_components/Spinner";
+import Filter from "../_components/Filter";
 
 export const revalidate = 3600;
 
@@ -23,7 +24,10 @@ export default async function Page({ searchParams }) {
 				home. The perfect spot for a peaceful, calm vacation. Welcome to paradise.
 			</p>
 
-			<Suspense fallback={<Spinner />}>
+			<div className="flex justify-end mb-8">
+				<Filter />
+			</div>
+			<Suspense fallback={<Spinner />} key={filter}>
 				<CabinList filter={filter} />
 			</Suspense>
 		</div>
