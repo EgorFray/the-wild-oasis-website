@@ -1,6 +1,7 @@
 import Link from "next/link";
+import { auth } from "@/app/_lib/auth";
 
-export default function Navigation() {
+export default async function Navigation() {
 	return (
 		<nav className="z-10 text-xl">
 			<ul className="flex gap-16 items-center">
