@@ -8,12 +8,13 @@ const authConfig = {
 			clientSecret: process.env.AUTH_GOOGLE_SECRET,
 		}),
 	],
-	callbacks : {
+	callbacks: {
 		authorized(auth, request) {
 			// This is to fast convert any type to bool
-			return !!auth?.user
-		};
-	}
+			return !!auth?.user;
+		},
+	},
+	pages: { signIn: "/login" },
 };
 
-export const { handlers, auth } = NextAuth(authConfig);
+export const { handlers, auth, signIn, signOut } = NextAuth(authConfig);
