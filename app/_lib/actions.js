@@ -1,7 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { signIn, signOut } from "./auth";
+import { auth, signIn, signOut } from "./auth";
 import { supabase } from "./supabase";
 
 export async function updateGuest(formData) {
@@ -17,7 +17,7 @@ export async function updateGuest(formData) {
 	const { data, error } = await supabase
 		.from("guests")
 		.update(updateData)
-		.eq("id", sessionStorage.user.guestId);
+		.eq("id", session.user.guestId);
 
 	if (error) throw new Error("Guest could not be updated");
 
