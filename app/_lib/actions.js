@@ -7,6 +7,7 @@ import { supabase } from "./supabase";
 export async function updateGuest(formData) {
 	const session = await auth();
 	if (!session) throw new Error("You must be logged in");
+
 	const nationalID = formData.get("nationalID");
 	const [nationality, countryFlag] = formData.get("nationality").split("%");
 	if (!/^[a-zA-Z0-9]{6,12}$/.test(nationalID))
@@ -22,6 +23,15 @@ export async function updateGuest(formData) {
 	if (error) throw new Error("Guest could not be updated");
 
 	revalidatePath("/account/profile");
+}
+
+export async function deleteReservation(bookingId) {
+	const session = await auth();
+	if (!session) throw new Error("You must be logged in");
+
+	const { error } = await supabase.from("bookings").delete().eq("id", bookingId);
+
+	if (error) throw new Error("Booking could not be deleted");
 }
 
 export async function signInAction() {
