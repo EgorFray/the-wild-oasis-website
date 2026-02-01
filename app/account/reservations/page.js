@@ -24,11 +24,7 @@ export default async function Page() {
 					</a>
 				</p>
 			) : (
-				<ul className="space-y-6">
-					{bookings.map((booking) => (
-						<ReservationCard booking={booking} key={booking.id} />
-					))}
-				</ul>
+				<ReservationCard bookings={bookings} />
 			)}
 		</div>
 	);
