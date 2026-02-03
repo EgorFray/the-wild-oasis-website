@@ -64,6 +64,8 @@ export async function deleteBooking(bookingId) {
 	if (error) throw new Error("Booking could not be deleted");
 
 	revalidatePath("account/reservations");
+
+	redirect("/cabins/thankyou");
 }
 
 export async function updateBooking(formData) {
